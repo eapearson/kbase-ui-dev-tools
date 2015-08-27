@@ -1,0 +1,16 @@
+{
+  "name": "kbase-ui-dev-tools",
+  "description": "Tools and Documentation to help people develop for the KBase UI",
+  "version": "0.0.1",
+  "private": true,
+  "repository": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": ">=0.1.9",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-markdown": "0.7.0",
+  }
+}
