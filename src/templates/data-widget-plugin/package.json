@@ -1,0 +1,8 @@
+{
+    "name": "kbase-ui-plugin-MY_PLUGIN",
+    "version": "0.0.1",
+    "keywords": ["kbase", "wiget"],
+    "author": "PLUGIN AUTHOR",
+    "contributors": [],
+    "dependencies": {}
+}
