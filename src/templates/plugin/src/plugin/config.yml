@@ -1,0 +1,51 @@
+## A sample widget config
+---
+package:
+    # Your name here
+    author: YOU HERE
+    # A unique widget name
+    # WHERE IS THIS USED?
+    name: demoPlugin
+    description: A package containing a sample widget plugin
+    date: January 1, 1970
+    version: 0.0.1
+source:
+    # Each module is an AMD module.
+    # Each widget is a module.
+    modules:
+        -
+            # naming convention:
+            # kb_PLUGIN_WIDGET
+            # where PLUGIN is the plugin name
+            #       WIDGET is the widget name, e.g. the file name.
+            # NB data vis widgets are only used in the GenericVisualizer, which uses
+            # the mapping provided here.
+            module: kb_demoPlugin_widget
+            file: widget.js
+        -
+            module: kb_demoPlugin_panel
+            file: panel.js
+install:
+    routes:
+        -
+            path: 
+                - 
+                    mypath
+                -
+                    type: param
+                    name: workspaceId
+                -
+                    type: param
+                    name: objectId
+            queryParams:
+                sub: {}
+                subid: {}            
+            panelFactory: kb_demoPlugin_panel
+        -
+            path: ['mypath', {type: param, name: workspaceId}, {type: param, name: objectId}, {type: param, name: objectVersion}]
+            queryParams:
+                sub: {}
+                subid: {}            
+            panelFactory: kb_demoPlugin_panel
+    # no menu
+    

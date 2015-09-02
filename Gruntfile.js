@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                         devDir('repos'),
                         devDir('runtime'),
                         devDir('docs'),
-                        devdir('config')
+                        devDir('config')
                     ]
                 }
             }
@@ -59,12 +59,18 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: 'src/docs/**/*.md',
+                        cwd: 'src/docs',
+                        src: '**/*.md',
                         dest: devDir('docs'),
-                        ext: '.html'
+                        ext: '.html',
+                        
                     }
                 ],
                 options: {
+                    template: 'src/docs/template.html',
+                    markdownOptions: {
+                        gfm: true
+                    }
                 }
             }
         },
@@ -78,6 +84,13 @@ module.exports = function (grunt) {
                 }
             }
         },
+        //gitinit: {
+        //    'plugin': {
+        //        options: {
+        //            cwd:pluginDir(grunt.option('plugin'))                    
+        //        }
+        //    }
+        //},
         copy: {
             'create-data-widget-plugin': {
                 options: {
@@ -89,6 +102,29 @@ module.exports = function (grunt) {
                         src: '**',
                         dest: pluginDir(grunt.option('plugin')),
                         expand: true
+                    }
+                ]
+            },
+            'create-plugin': {
+                options: {
+                    force: true
+                },
+                files: [
+                    {
+                        cwd: 'src/templates/plugin',
+                        src: '**',
+                        dest: pluginDir(grunt.option('plugin')),
+                        expand: true,
+                        rename: function (dest, src) {
+                            // var m = src.match(/^(.*)_gitignore$/);
+                            // if (m) {
+                            //    src = m[1] + '.gitignore';
+                            // }
+                            if (src === '_gitignore') {
+                                src = '.gitignore';
+                            }
+                            return dest + '/' + src;
+                        }
                     }
                 ]
             }
@@ -122,6 +158,11 @@ module.exports = function (grunt) {
         'check-plugin',
         'copy:create-data-widget-plugin'
     ]);
+    
+    grunt.registerTask('create-plugin', [
+        'check-plugin',
+        'copy:create-plugin'
+    ]);
 
     // Does the whole building task
     grunt.registerTask('build-dev', [
@@ -132,6 +173,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('clean-dev', [
         'clean:clean-dev'
+    ]);
+    
+    grunt.registerTask('build-docs', [
+        'markdown:build-dev'
     ]);
 
 };

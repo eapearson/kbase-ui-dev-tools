@@ -1,27 +1,42 @@
 ## A sample widget config
 ---
 package:
+    # Your name here
     author: YOU HERE
-    name: my-widget-plugin
+    # A unique widget name
+    # WHERE IS THIS USED?
+    name: demoPlugin
     description: A package containing a sample widget plugin
     date: January 1, 1970
     version: 0.0.1
 source:
+    # Each module is an AMD module.
+    # Each widget is a module.
     modules:
         -
-            module: kb_devtool_sample_widget1
+            # naming convention:
+            # kb_PLUGIN_WIDGET
+            # where PLUGIN is the plugin name
+            #       WIDGET is the widget name, e.g. the file name.
+            # NB data vis widgets are only used in the GenericVisualizer, which uses
+            # the mapping provided here.
+            module: kb_demoPlugin_widget1
             file: widget1.js
         -
-            module: kb_devtool_sample_widget2
+            module: kb_demoPlugin_widget2
             file: widget2.js
 install:
    types:
         -
             type: 
+                # The module and type name to map to.
                 module: Communities
                 name:   Collection
                 version: any
-            icon: 
+            icon:
+                # If this is the only widget for this type, it makes sense to define
+                # the icon here.
+                # IS THIS A GOOD IDEA?
                 type: fontAwesome
                 classes: ['fa-list-ul']
             viewers:
