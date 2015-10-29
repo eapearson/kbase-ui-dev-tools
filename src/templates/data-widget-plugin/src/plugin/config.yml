@@ -26,7 +26,16 @@ source:
             module: kb_demoPlugin_widget2
             file: widget2.js
 install:
-   types:
+    widgets:
+        -
+            module: kb_demoPlugin_widget1
+            name: kb_demoPlugin_widget1
+            type: factory
+        -
+            module: kb_demoPlugin_widget2
+            name: kb_demoPlugin_widget2
+            type: factory
+    types:
         -
             type: 
                 # The module and type name to map to.
